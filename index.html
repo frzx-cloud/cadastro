@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+         body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        text-align: center;
+        background-color: #ddd;
+        padding-top: 50px;
+        }
+
+         .container {
+        max-width: 400px; 
+        width: 100%; 
+        margin: 0 auto; 
+        padding: 30px;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        text-align: left;
+        }
+        input[ type="submit"] {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Clientes</h1>
+    <div>
+    <form>
+        <main class="container">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" required placeholder="Digite seu nome aqui">
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="digiteseuemail@email">
+        <label for="celular">Telefone</label>
+        <input type="telefone" id="celular" required placeholder="99999-9999">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" required placeholder="29210115651">
+        <label for="cep">CEP</label>
+        <input type="text" id="cep" required placeholder="12345678">
+        <label for="rua">Rua</label>
+        <input type="text" id="rua" required placeholder="Digite aqui a rua">
+        <label for="numero">Número</label>
+        <input type="text" id="numero" required placeholder="Digite aqui o Número">
+        <label for="bairro">Bairro</label>
+        <input type="text" id="bairro" required placeholder="Digite aqui o Bairro">
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" required placeholder="Digite aqui a cidade">
+        <label for="uf">Estado</label>
+        <input type="text" id="uf" required placeholder="Digite aqui o Estado">
+        <label for="senha">senha</label>
+        <input type="text" id="senha" required placeholder="Digite aqui sua senha">
+        <input type="submit" value="Enviar Cadastro">
+        </main>
+    </div>
+    </form>
+</body>
+</html>
