@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,14 +40,22 @@
     </style>
     <script>
         function pesquisarcep(){
-            const cep = document.getElementById("cep").value
+            const cep = document.getElementById("cep").value 
             const link = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherEndereco"
             var script = document.createElement("script")
             script.src = link
             document.body.appendChild(script)
         }
         function preencherEndereco(conteudo){
-            alert(JSON.stringify(conteudo))
+            if("erro" in conteudo){
+                alert("CEP inexistente")
+            } else {
+                document.getElementById("rua").value = conteudo.logradouro
+                document.getElementById("bairro").value = conteudo.bairro
+                document.getElementById("cidade").value = conteudo.localidade
+                document.getElementById("uf").value = conteudo.estado
+            }
+            
         }
     </script>
 </head>
