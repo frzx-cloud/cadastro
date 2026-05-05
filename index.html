@@ -58,6 +58,24 @@
 
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            }
+
+        button {
+            cursor: pointer;
+            padding: 8px;
+            }
         
         
     </style>
@@ -88,6 +106,19 @@
             
         }
 
+        function toggleSenha() {
+            const input = document.getElementById("senha");
+            const btn = document.querySelector("button");
+
+        if (input.type === "password") {
+        input.type = "text";
+        btn.textContent = "Esconder";
+        } else {
+        input.type = "password";
+        btn.textContent = "Mostrar";
+        }
+  }
+
     </script>
 </head>
 <body>
@@ -116,7 +147,8 @@
         <label for="uf">Estado</label>
         <input type="text" id="uf" required placeholder="Digite aqui o Estado">
         <label for="senha">senha</label>
-        <input type="text" id="senha" required placeholder="Digite aqui sua senha">
+        <input type="password" id="senha" required placeholder="Digite aqui sua senha">
+        <button type="button" onclick="toggleSenha()">Mostrar</button>
         <input type="submit" value="Enviar Cadastro">
         <div id="toast" class="toast"></div>
         </main>
