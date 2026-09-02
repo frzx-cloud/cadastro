@@ -1,172 +1,221 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <style>
-         body {
-        margin: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        text-align: center;
-        background-color: #ddd;
-        padding-top: 50px;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-         .container {
-        max-width: 400px; 
-        width: 100%; 
-        margin: 0 auto; 
-        padding: 30px;
-        background-color: #f4f4f4;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    body {
+        margin: 0;
+        font-family: Georgia, 'Times New Roman', serif;
+        text-align: center;
+        background: #1a1a1a;
+        color: #f5f5f5;
+        padding-top: 50px;
+
+        /* Fundo estilo barbearia */
+        background-image:
+            linear-gradient(45deg, #151515 25%, transparent 25%),
+            linear-gradient(-45deg, #151515 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #151515 75%),
+            linear-gradient(-45deg, transparent 75%, #151515 75%);
+        background-size: 40px 40px;
+        background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+    }
+
+    h1 {
+        font-size: 38px;
+        color: #d4af37;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    .container {
+        max-width: 450px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 35px;
+
+        background: #242424;
+        border: 2px solid #d4af37;
+        border-radius: 12px;
+
+        box-shadow:
+            0 0 15px rgba(212, 175, 55, 0.25),
+            0 8px 20px rgba(0, 0, 0, 0.7);
+
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         text-align: left;
-        }
-         input[ type="submit"] {
-        background-color: green;
+    }
+
+    /* Pequeno detalhe decorativo */
+    .container::before {
+        content: "✦ BARBEARIA ✦";
+        text-align: center;
+        color: #d4af37;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        color: #d4af37;
+        font-weight: bold;
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        background: #111;
         color: white;
+
+        border: 1px solid #555;
+        border-radius: 6px;
+
+        outline: none;
+        font-size: 15px;
+
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: #d4af37;
+        box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+    }
+
+    input::placeholder {
+        color: #888;
+    }
+
+    /* Botão Mostrar */
+    button {
+        cursor: pointer;
+        padding: 10px 15px;
+
+        background: #3a3a3a;
+        color: #d4af37;
+
+        border: 1px solid #d4af37;
+        border-radius: 6px;
+
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #d4af37;
+        color: #111;
+    }
+
+    /* Botão Enviar */
+    input[type="submit"] {
+        background: #d4af37;
+        color: #111;
+
         border: none;
         cursor: pointer;
-        font-weight: bold;
-        margin-top: 10px;
-        border-radius: 10px;
-        }
 
-         .toast {
+        font-weight: bold;
+        font-size: 17px;
+
+        margin-top: 15px;
+        padding: 13px;
+
+        border-radius: 6px;
+
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background: #f0cf55;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 5px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Mensagem */
+    .toast {
         visibility: hidden;
+
         min-width: 250px;
-        background-color: #333;
-        color: #fff;
+
+        background-color: #d4af37;
+        color: #111;
+
         text-align: center;
-        border-radius: 5px;
+
+        border-radius: 6px;
         padding: 16px;
+
         position: fixed;
         z-index: 1;
+
         left: 50%;
         bottom: 30px;
-        transform: translateX(-50%);
-        }
 
-        .toast.show {
+        transform: translateX(-50%);
+
+        font-weight: bold;
+    }
+
+    .toast.show {
         visibility: visible;
         animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
         }
 
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-
-        .password-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            }
-
-        input {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            }
-
-        button {
-            cursor: pointer;
-            padding: 8px;
-            }
-        
-        
-    </style>
-    <script>
-        function pesquisarcep(){
-            document.getElementById("rua").value = ""
-            document.getElementById("bairro").value = ""
-            document.getElementById("uf").value = ""
-            document.getElementById("cidade").value = ""
-            
-
-            var validacep = /^[0-9]{8}$/
-
-            const cep = document.getElementById("cep").value
-            if(validacep.test(cep)){
-                const link = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherEndereco"
-                var script = document.createElement("script")
-                script.src = link
-                document.body.appendChild(script)
-            } else {
-              document.getElementById("cep").value = ""
-                var x = document.getElementById("toast");
-                x.className = "toast show";
-                x.textContent = "CEP digitado inexistente!"
-                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-                
-            }
-            
+        to {
+            bottom: 30px;
+            opacity: 1;
         }
-        function preencherEndereco(conteudo){
-            if(!("erro" in conteudo)){
-                document.getElementById("rua").value = conteudo.logradouro
-                document.getElementById("bairro").value = conteudo.bairro
-                document.getElementById("cidade").value = conteudo.localidade
-                document.getElementById("uf").value = conteudo.estado 
-            } else {
-                var x = document.getElementById("toast");
-                x.className = "toast show";
-                x.textContent = "CEP digitado inexistente!"
-                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-            }
-            
+    }
+
+    @keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
         }
 
-        function toggleSenha() {
-            const input = document.getElementById("senha");
-            const btn = document.querySelector("button");
-
-        if (input.type === "password") {
-        input.type = "text";
-        btn.textContent = "Esconder";
-        } else {
-        input.type = "password";
-        btn.textContent = "Mostrar";
+        to {
+            bottom: 0;
+            opacity: 0;
         }
-  }
+    }
 
-    </script>
-</head>
-<body>
-    <h1>Cadastro de Clientes</h1>
-    <div>
-    <form>
-        <main class="container">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" required placeholder="Digite seu nome aqui">
-        <label for="email">Email</label>
-        <input type="email" id="email" required placeholder="digiteseuemail@email">
-        <label for="celular">Telefone</label>
-        <input type="telefone" id="celular" required placeholder="99999-9999">
-        <label for="cpf">CPF</label>
-        <input type="text" id="cpf" required placeholder="29210115651">
-        <label for="cep">CEP</label> 
-        <input type="text" id="cep" onblur="pesquisarcep()" required placeholder="12345678">
-        <label for="rua">Rua</label>
-        <input type="text" id="rua" required placeholder="Digite aqui a rua">
-        <label for="numero">Número</label>
-        <input type="text" id="numero" required placeholder="Digite aqui o Número">
-        <label for="bairro">Bairro</label>
-        <input type="text" id="bairro" required placeholder="Digite aqui o Bairro">
-        <label for="cidade">Cidade</label>
-        <input type="text" id="cidade" required placeholder="Digite aqui a cidade">
-        <label for="uf">Estado</label>
-        <input type="text" id="uf" required placeholder="Digite aqui o Estado">
-        <label for="senha">senha</label>
-        <input type="password" id="senha" required placeholder="Digite aqui sua senha">
-        <button type="button" onclick="toggleSenha()">Mostrar</button>
-        <input type="submit" value="Enviar Cadastro">
-        <div id="toast" class="toast"></div>
-        </main>
-    </div>
-    </form>
-</body>
-</html>
+    .password-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 500px) {
+        body {
+            padding-top: 25px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .container {
+            padding: 25px;
+        }
+    }
+</style>
